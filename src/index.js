@@ -1,17 +1,79 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const App = (props) => {
+    const course = {
+        name: 'Half stack application development',
+        parts: [
+            {
+                name: 'Fundamentals of React',
+                exercises: 10
+            },
+            {
+                name: 'Using props to pass data',
+                exercises: 7
+            },
+
+            {
+                name: 'State of a component',
+                exercises: 14
+            },
+        ]
+    }
+    return (
+        <div>
+            <Header course={course}/>
+            <Content course={course}/>
+            <Total course={course}/>
+        </div>
+    )
+}
+
+
+const Header = (props) => {
+    return (
+        <div>
+            <h1>Header {props.course.name}</h1>
+        </div>
+    )
+}
+
+
+const Content = (props) => {
+    return (
+        <div>
+            <p>
+                <Part part={props.course.parts[0]}/>
+                <Part part={props.course.parts[1]}/>
+                <Part part={props.course.parts[2]}/>
+            </p>
+        </div>
+    )
+}
+
+const Total = (props) => {
+    return (
+        <div>
+            <p>Number of
+                exercises {props.course.parts[0].exercises + props.course.parts[1].exercises + props.course.parts[2].exercises}</p>
+        </div>
+    )
+}
+
+const Part = (props) => {
+    return (
+        <p>
+            {props.part.name} {props.part.exercises}
+        </p>
+    )
+}
+
+ReactDOM.render(<App/>, document.getElementById('root'))
+
+
+
+
+
+
+
